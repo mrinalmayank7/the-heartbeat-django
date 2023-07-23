@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200;300;400;500;600;700&family=Playfair+Display&family=Abril+Fatface&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Italiana&family=Rasa:wght@300;400;500;600;700&family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Codystar:wght@300;400&family=Comfortaa:wght@300;400;500;600;700&family=Righteous&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+<!--
+font-family: 'Bodoni Moda', serif;
+font-family: 'Codystar', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Righteous', cursive;
+font-family: 'Sen', sans-serif;
+-->
+  </head>
+  <body style="background:black;" onload="load()">
+    <div id="loading" style="width:100%;height:100vh;z-index:40000;background:#fff url('https://raw.githubusercontent.com/mrinalmayank7/mrinalmayank7/main/IMAGES/preloader1.svg') no-repeat center;position:fixed;">
+      <br>
+      <p style="text-align:center;font-size:17px;font-weight:600;color:black;margin:0px">The HeartBeat</p>
+      <p style="text-align:center;font-size:12px;font-weight:400;color:black;margin:0px">By Mrinal</p>
+    </div>
+    <nav class="navbar  navbar-expand-lg navbar-light fixed-top fixed-top-2 navbackdrop" style="border-bottom:1px solid #17202A  ;margin-right:auto;margin-left:auto;margin-top:0px;padding:40px 2px 5px 2px;">
+      <a class="nav-link navbttn" href="{% url 'home' %}" style="font-size: 18px;color:#0074FF;padding:2px;"><i class="bi bi-house-door-fill"></i> &nbsp;&nbsp;</a>
+      <form class="form-inline mr-sm-4" method="get" action="/search" >
+      <div class="input-group" style="border-radius:50px;padding:0px;">
+      <input class="form-control searchbar" type="search" name="query" id="query" placeholder="Search here"
+      style="background:transparent;border:0px;padding:10px;margin:0px;font-size:12px;border-radius:50px;border:1px solid #212F3D;color:white;">
+      <span class="input-group-append">
+      <button class="searchbutton" type="submit" style="border-radius:50px;border:0px;font-size: 14px;background:transparent;margin-right:10px;margin-left:5px;color:white;"><i class="bi bi-search"></i></button>
+      </span>
+        </div>
+      </form>
+
+
+  <div style="margin-left:auto;">
+    <label class="nav-item "><a class="nav-link navbttn" href="{% url 'contact' %}" style="font-size: 12px;color:#CACFD2;"><b  style="font-weight:400;">Contact</b></a></label>
+    <label class="nav-item "><a class="nav-link navbttn" href="{% url 'about' %}" style="font-size: 12px;color:#CACFD2;"><b  style="font-weight:400;">About</b></a></label>
+
+    {% if user.is_authenticated %}
+    <label>
+          <div class="dropdown dropleft" style="margin:0px;padding:5px;">
+           <button id="dropdownMenuButton" data-toggle="dropdown"style="margin:0px;padding:0px;
+           font-size:14px;background:transparent;border:0px;color:white;font-weight:600;margin-right:2vw;">
+            <i class="bi bi-person-circle"></i> Profile
+           </button>
+           <div class="dropdown-menu text-center navbackdrop" aria-labelledby="dropdownMenuButton"
+           style="background:white;border-radius:10px;padding:20px;width:35vh;">
+           <p style="font-size:24px;color:black;margin:5px;"><i class="bi bi-person-circle"></i></p>
+             <p style="color:#4D94EA;margin:5px;font-size:16px;font-weight:600;">{{user.first_name}} {{user.last_name }}</p>
+             <p style="font-size:11px;color:grey;">{{user.email}}</p>
+
+             <hr  style="margin:5px;">
+          <p style="margin:5px;font-size:13px;color:grey;">username : <label style="color:black;font-weight:600;">{{user.username}}</label></p>
+               <a class="btn btn-outline-primary" href="{% url 'logout' %}"style="border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:600">Logout</a>
+           </div>
+          </div>
+    </label>
+          {% else %}
+          <label class="nav-item "><a class="nav-link navbttn" href="{% url 'user_login' %}" style="font-size: 14px;color:white;margin-right:1vw;"><i class="bi bi-person-circle"></i> <b  style="font-weight:600;">Login </b></a></label>
+          {% endif %}
+
+    </div>
+</nav>
+
+<nav class="navbar  navbar-expand-lg navbar-dark  fixed-top navbackdrop" style="padding:2px;  margin-right:auto;margin-left:auto;">
+  <a class="nav-link active" href="{% url 'home' %}" style="font-size:18px;color:white;padding:2px;font-weight:600;">The HeartBeat &nbsp;&nbsp;</a>
+
+<button  style="font-size:12px;margin-right:2vw;"class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse " id="navbarSupportedContent">
+  <ul class="navbar-nav" style="width:100%;justify-content:space-around">
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'article' %}" style="font-size: 12px;color:#CACFD2;"><b style="font-weight:400;">Articles &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></li>
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'howitworks' %}" style="font-size: 12px;color:#CACFD2;"><b  style="font-weight:400;">How it works &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></li>
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'diabetes_risk' %}" style="font-size: 12px;color:#CACFD2;"><b style="font-weight:400;">Diabetes Risk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></li>
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'cvd_prediction' %}" style="font-size: 12px;color:#CACFD2;"><b style="font-weight:400;">CVD Prediction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></li>
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'detect_brain_tumor' %}" style="font-size: 12px;color:#CACFD2;"><b style="font-weight:400;">Detect Brain Tumour &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></li>
+    <li class="nav-item "><a class="nav-link navbttn" href="{% url 'liver_diagnosis' %}" style="font-size: 12px;color:#CACFD2;"><b style="font-weight:400;">Liver Diagnosis </b></a></li>
+
+  </ul>
+
+</div>
+</nav>
+
+{% block content %}
+
+    <br><br><br>
+    <div class="container" style="margin-left:auto;margin-right:auto;padding:4%">
+    <div class="homediv1" style="position:relative;">
+      <div class="blackanimation" style="background:black;width:100%;height:100vh;z-index:-1;position:absolute">
+      </div>
+      <div class="image2" style="margin-right:auto;margin-left:auto;position:absolute;z-index:-2;">
+              <img class="d-block justify-content-center"src="{% static 'images/img2.jpg'%}" style="max-width:100%;" >
+      </div>
+      <div id="particles-js" style="position:absolute;width:90%;padding:5%;margin: 0% 10% 0% 5%"></div>
+      <div style="padding-top:45px;">
+        <p class="hometextfade"style="font-size:45px;font-weight:400;color:white;font-family: 'Sen', sans-serif;text-align:center;">The HeartBeat</p>
+       <p  class="hometextfade"style="font-weight:200;font-size:13px;color:#BFC9CA;text-align:center;margin:0px;">" Happiness can be found, even in the darkest of times, if one only remembers to turn on the light."</p>
+       <p  class="hometextfade"style="font-weight:200;font-size:14px;color:white;text-align:center;margin:0px;"><i>-Albus Dumbledore-</i> </p>
+
+       <br>
+        <div class="hometextfade col-lg-5 col-md-12 col-sm-12 col-12" style="width:100%;padding:10px;">
+         <div class="row">
+           <div class="col-lg-6 col-md-6 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+             <div class="" style="width:100%;padding:10px;border-top:1px solid #1B2631 ;">
+              <p style="color:white;font-size:15px;font-weight:600;margin:0px;">Make  use of</p>
+              <p style="color:white;font-size:40px;font-weight:600;margin:0px;" data-aos="zoom-out"><label style="font-weight:600;margin:0px;">FREE</label></p>
+              <p class="statsgradient" style="color:#A1A1A1;font-size:13px;font-weight:600;margin:0px;">tools to detect your health issues</p>
+             </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+             <div class="" style="width:100%;padding:10px;border-top:1px solid #1B2631 ;">
+             <p style="color:white;font-size:15px;font-weight:600;margin:0px;">Up to</p>
+             <p style="color:white;font-size:40px;font-weight:600;margin:0px;"data-aos="zoom-out"><label style="font-weight:700;margin:0px;">90%</label></p>
+             <p class="statsgradient" style="color:#A1A1A1;font-size:13px;font-weight:600;margin:0px;"> of accuracy achieved in outcomes</p>
+            </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+             <div class="" style="width:100%;padding:10px;border-top:1px solid #1B2631 ;">
+             <p class="statsgradient"style="color:white;font-size:45px;font-weight:600;margin:0px;"data-aos="zoom-out"><i class="fa fa-spinner" aria-hidden="true"></i></p>
+             <p class="statsgradient" style="color:#A1A1A1;font-size:13px;font-weight:600;margin:0px;">Effortless usage with 4 integrated tools.</p>
+            </div>
+           </div>
+           <div class="col-lg-6 col-md-6 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+             <div class=""style="width:100%;padding:10px;border-top:1px solid #1B2631 ;">
+             <p class="statsgradient"style="color:white;font-size:45px;font-weight:600;margin:0px;"data-aos="zoom-out"><i class="fa fa-bolt" aria-hidden="true"></i></p>
+             <p class="statsgradient"style="color:#A1A1A1;font-size:13px;font-weight:600;margin:0px;">Powerful enough to provide upshot within seconds</p>
+            </div>
+           </div>
+         </div>
+      </div>
+      </div>
+    </div>
+    <br><br>
+      <div class="tooldiv" style="position:relative;">
+  <!--      <div class=""style="position:absolute">
+          <img class="col-lg-11"src="{% static 'images/img2.jpg'%}" alt="">
+        </div>-->
+        <div class="row">
+
+          <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+            <div class="" style="width:100%" data-aos="fade-up">
+              <br><br>
+              <p class=""style="color:white;font-size:25px;font-family: 'Sen', sans-serif;font-weight:500;text-align:center;margin:0px;">Precise upshot with </p>
+              <p class="gradient1"style="color:white;font-size:55px;font-weight:700;text-align:center;margin:0px;font-family: 'Bodoni Moda', sans-serif;">ML Integrated </p>
+              <p class=""style="color:white;font-size:25px;font-family: 'Sen', sans-serif;font-weight:500;text-align:center;margin:0px;">diagnostic tools.</p>
+
+              <br><br>
+              <p style="color:white;text-align:center;font-size:14px;font-weight:400;">Choose from the pool of Machine Learning Integrated Intelligent Diagnostic tools  for predicting the presence of diabetes , CVD, liver disease & brain tumour developed with widely used ML algorithms, up to 90% of accuracy of making correct predictions.</p>
+              <br>
+              <p class="glowicon" style="text-align:center;"><a  class="glowicon"href="{% url 'howitworks'  %}" style="text-align:center;background:transparent;border-radius:30px;border-width:2px;font-size:15px;font-weight:700;border:0px;color:white;"> Get Started <i class="bi bi-chevron-right"></i></a></p>
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-10 col-sm-12 col-11" style="margin-left:auto;margin-right:auto;padding:35px;"data-aos="zoom-in">
+
+           <div class="" style="width:100%">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-9" style="margin-bottom: 5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                  <div class="flipcard" >
+                     <div class="flipcard-wrap">
+                       <div class="card card-front">
+                         <div class="toolcard"style="width:100%;position:relative;">
+                           <img class="toolimage"src="{% static 'images/diabetes.jpg'%}"  style="width:100%;padding:0px;border-radius:13px 13px 13px 13px;" >
+                           <div class="tooltextdiv" style="margin:0px;padding:15px;background: linear-gradient(to bottom, rgba(255,255,255,0) 5%,rgba(255,255,255,0.6) 20%,rgba(255,255,255,1) 30%,rgba(255,255,255,1) 100%);margin-top:-65%;position:absolute;height:70%;">
+                           <p style="color:black;font-size:16px;font-weight:700;margin-bottom:2px;">Diabetes Risk</p>
+                           <p style="font-size:20px;margin:0px;"><i class="bi bi-three-dots"></i></p>
+                           <p style="font-size:12px;color:grey ;margin:0px;">Identify the presence of diabetes with 90.4 % of accuracy.</p>
+                           </div>
+                         </div>
+                        </div>
+                        <div class="card card-back">
+                          <div class="card-body">
+                            <p class="logogradient"style="font-size:25px;font-weight:400;color:white;font-family:'Codystar', cursive;">The HeartBeat</p>
+                            <a class="btn btn-outline-primary" href="{% url 'diabetes_risk' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                  <div class="flipcard">
+                     <div class="flipcard-wrap">
+                       <div class="card card-front">
+                         <div class="toolcard"style="width:100%;position:relative;">
+                           <img class="toolimage"src="{% static 'images/heart.jpg'%}"  style="width:100%;padding:0px;border-radius:13px 13px 13px 13px;" >
+                           <div class="tooltextdiv" style="margin:0px;padding:15px;background: linear-gradient(to bottom, rgba(255,255,255,0) 5%,rgba(255,255,255,0.6) 20%,rgba(255,255,255,1) 30%,rgba(255,255,255,1) 100%);margin-top:-65%;position:absolute;height:70%;">
+                           <p style="color:black;font-size:16px;font-weight:700;margin-bottom:2px;">CVD Prediction</p>
+                           <p style="font-size:20px;margin:0px;"><i class="bi bi-three-dots"></i></p>
+                           <p style="font-size:12px;color:grey;margin:0px;">Predict the chances of heart disease with 90.5% of accuracy.</p>
+                           </div>
+                         </div>
+                        </div>
+                        <div class="card card-back">
+                          <div class="card-body">
+                            <p class="logogradient"style="font-size:25px;font-weight:400;color:white;font-family:'Codystar', cursive;">The HeartBeat</p>
+                            <a class="btn btn-outline-primary" href="{% url 'cvd_prediction' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                  <div class="flipcard">
+                     <div class="flipcard-wrap">
+                       <div class="card card-front">
+                         <div class="toolcard"style="width:100%;position:relative;">
+                           <img class="toolimage"src="{% static 'images/liver.jpg'%}"  style="width:100%;padding:0px;border-radius:13px 13px 13px 13px;" >
+                           <div class="tooltextdiv" style="margin:0px;padding:15px;background: linear-gradient(to bottom, rgba(255,255,255,0) 5%,rgba(255,255,255,0.6) 20%,rgba(255,255,255,1) 30%,rgba(255,255,255,1) 100%);margin-top:-65%;position:absolute;height:70%;">
+                           <p style="color:black;font-size:16px;font-weight:700;margin-bottom:2px;">Liver Diagnosis</p>
+                           <p style="font-size:20px;margin:0px;"><i class="bi bi-three-dots"></i></p>
+                           <p style="font-size:12px;color:grey;margin:0px;">Predict the chances of liver disease with 84% of accuracy.</p>
+                           </div>
+                         </div>
+                        </div>
+                        <div class="card card-back">
+                          <div class="card-body">
+                            <p class="logogradient"style="font-size:25px;font-weight:400;color:white;font-family:'Codystar', cursive;">The HeartBeat</p>
+                            <a class="btn btn-outline-primary" href="{% url 'liver_diagnosis' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-9" style="margin-bottom:5px;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+                  <div class="flipcard">
+                     <div class="flipcard-wrap">
+                       <div class="card card-front">
+                         <div class="toolcard"style="width:100%;position:relative;">
+                           <img class="toolimage"src="{% static 'images/brain.jpg'%}"  style="width:100%;padding:0px;border-radius:13px 13px 13px 13px;" >
+                           <div class="tooltextdiv" style="margin:0px;padding:15px;background: linear-gradient(to bottom, rgba(255,255,255,0) 5%,rgba(255,255,255,0.6) 20%,rgba(255,255,255,1) 30%,rgba(255,255,255,1) 100%);margin-top:-65%;position:absolute;height:70%;">
+                           <p style="color:black;font-size:16px;font-weight:700;margin-bottom:2px;">Brain Tumour</p>
+                           <p style="font-size:20px;margin:0px;"><i class="bi bi-three-dots"></i></p>
+                           <p style="font-size:12px;color:grey ;margin:0px;">Detect the presence of brain tumour with 92% of accuracy.</p>
+                           </div>
+                         </div>
+                        </div>
+                        <div class="card card-back">
+                          <div class="card-body">
+                            <p class="logogradient"style="font-size:25px;font-weight:400;color:white;font-family:'Codystar', cursive;">The HeartBeat</p>
+                            <a class="btn btn-outline-primary" href="{% url 'detect_brain_tumor' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;">Open Tool <i class="bi bi-chevron-double-right"></i></a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="homeabout">
+        <div class="row">
+          <div class="col-lg-3 col-md-5 col-sm-12 col-12"data-aos="fade">
+            <img class="image2"src="{% static 'images/dev.jpg'%}" alt="" style="width:100%;padding:0px;margin-right:auto;margin-left:auto;margin-top:30px;">
+            <p class="hrtext"style="color:#B2BABB;font-size:12px;font-weight:400;text-align:right;margin:5px;"><i>&nbsp; Mrinal Mayank &nbsp;</i></p>
+
+            <p style="margin:20px 5px 5px 5px;color:white;font-size:13px;font-weight:600;letter-spacing:3px;">/DEVELOPER</p>
+            <hr color="#626567" style="margin:0px">
+          </div>
+          <div class="col-lg-8 col-md-7 col-sm-12 col-12"data-aos="fade" style="margin-left:auto;margin-right:auto;">
+            <p style="margin:5px;color:white;text-align:right;font-size:13px;font-weight:600;letter-spacing:3px;">/SUMMARY</p>
+            <hr color="#626567" style="margin:0px 0px 10px 50%">
+            <p class="logogradient"style="font-family: 'Bodoni Moda', sans-serif;font-size:35px;color:white ;font-weight:200;">The Future is amazing </p>
+            <div class="row">
+              <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <p style="color:#B2BABB;font-size:12px;font-weight:400;padding:10px;">In the past few decades it was almost  challenging for healthcare experts  to collect & analyze the huge volume of data for making effective predictions & diagnosis, today with the evolution of <label style="font-weight:700;font-size:12px;margin:0px;color:white;">ML & AI </label> it’s now possible to perform the healthcare tasks effortlessly which can even beat the humans.</p>
+              </div>
+              <div class="col-lg-6 col-md-12  col-sm-12 col-12">
+                <p style="color:#B2BABB;font-size:12px;font-weight:400;padding:10px;"><label style="font-weight:700;font-size:12.5px;margin:0px;color:white;">The Heartbeat</label> is  your powerful healthcare expert developed with 4 integrated intelligent diagnosis tools which not only provide highly accurate results but can quickly process the results within seconds. <br>Providing with the clinical decision support to help specialists & doctors to make better decisions quickly with identification of health complications & risk score that are far more precise than the human brain.</p>
+                <a class="glowicon"href="{% url 'about'  %}" style="color:white;background:transparent;border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:600;border:0px;">About Us <i class="bi bi-chevron-right"></i></a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="homearticles" style="position:relative;">
+        <br><br>
+        <div  style="margin-right:auto;margin-left:auto;position:absolute;z-index:-2;">
+                <img class="d-block justify-content-center"src="{% static 'images/img3.jpg'%}" style="max-width:100%;" >
+        </div>
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12" style="margin-right:auto;margin-left:auto;">
+          <div class="text-center" data-aos="fade-up">
+
+          <p class="gradient1"style="font-size:50px;color:white;font-weight:700;margin:5px;font-family: 'Bodoni Moda', sans-serif;">Top Reads</p>
+          <p  style="font-size:12px;color:white;margin:0px;padding:0% 10% 0%  10% ">The HeartBeat brings to you the top healthcare reads. Discover insights on common diseases, symptoms, precautions, treatments & more. </p>
+          <a class="glowicon" href="{% url 'article'  %}" style="color:white;background:transparent;border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:600;border:0px;">Explore More <i class="bi bi-chevron-right"></i></a>
+
+          </div>
+          <br>
+        <div class="row">
+            {% for page in pages %}
+            {% if page.add_article_to_home%}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-10" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+              <div class=" flipcard navbackdrop" style="margin:0px;padding:0px;border-radius:10px;"data-aos="zoom-in-up">
+                 <div class="flipcard-wrap" >
+                   <div class="homearticleborder card card-front " >
+                     <div class="" style="width:100%;background:rgba(255,255,255,0.25);padding:20px;border-radius:10px;border-top:0.5px solid rgba(255,255,255,0.3); border-left:0.5px  solid rgba(255,255,255,0.3);">
+                       <p style="text-align:center;font-size:14px;color:white;font-weight:600;margin:0px;">{{ page.article_name}}</p>
+                       <p style="text-align:center;font-size:12px;color:#BFC9CA;">Posted on. {{ page.posted_on}}</p>
+                       <img src="{{ page.article_imageURL }}"  style="width:100%;padding:0px;border-radius:10px;" >
+
+                     </div>
+                    </div>
+                    <div class="card card-back" style="background:rgba(255,255,255,0.25);border-top:0.5px solid rgba(255,255,255,0.3); border-left:0.5px  solid rgba(255,255,255,0.3);">
+                      <div class="card-body" style="padding:15px;">
+                        <p style="text-align:center;font-size:12px;color:#BFC9CA;"><b>Brief. </b>{{ page.article_caption}}</p>
+                        <a class="btn btn-outline-primary"data-product="{{ page.id }}"  href="{% url 'read_article' page.id %}" style="border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:700;">Read <i class="bi bi-chevron-double-right"></i></a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+         </div>
+        </div>
+      </div><br><br>
+      <div class="homevideo">
+        <div class="row" data-aos="fade">
+          <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;padding:20px;">
+            <br><br>
+            <p class="hrtext" style="color:white;font-size:14px;font-family: 'Comfortaa', cursive;font-weight:600;">&nbsp; Instant Mail Delivery &nbsp;</p>
+
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-4 col-4" style="background:#000080;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+            <p style="color:white;font-size:30px;margin:10px;margin-left:auto;margin-right:auto;"><i class="bi bi-clock-history"></i></p>
+            <p style="color:white;font-size:11px;margin:0px;text-align:center;">Delivering the upshot in an eye blink over the input provided.</p>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-4 col-4" style="background:blue;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+            <p style="color:white;font-size:30px;margin:10px;margin-left:auto;margin-right:auto;"><i class="bi bi-search"></i></p>
+            <p style="color:white;font-size:11px;margin:0px;text-align:center;">Finding the Risk score of diseases with regression & classification algorithms.</p>
+
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-4 col-4" style="background:#1E90FF;margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+            <p style="color:white;font-size:30px;margin:10px;margin-left:auto;margin-right:auto;"><i class="bi bi-person-check-fill"></i></p>
+            <p style="color:white;font-size:11px;margin:0px;text-align:center;">Effortless usage of tools with a user-centered design.</p>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="background:#000080;margin-left:auto;margin-right:auto;padding:20px;height:220px;">
+            <div class="text-center">
+
+              <p style="color:white;font-size:35px;"><i class="fa fa-user-md" aria-hidden="true"></i> &nbsp;+ &nbsp;<i class="fa fa-cogs" aria-hidden="true"></i></p>
+            </div>
+
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:20px;">
+
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12" style="margin-right:auto;margin-left:auto;margin-top:-100px;padding:0px 4% 0px 4%;"data-aos="fade-up">
+        <video autoplay muted loop width="100%" style="border-radius:30px;border:24px solid black;box-shadow:0px 0px 0px 3px rgba(255,255,255,0.6);">
+           <source src="{% static 'images/videoshot.mp4'%}" type="video/mp4">
+        </video>
+        </div>
+        </div>
+      <a id="subscribe"></a>
+      <br><br><br>
+      <div class="subscribediv col-lg-7 col-md-10 col-sm-12 col-12" style="margin-right:auto;margin-left:auto;padding:1px; background:linear-gradient(to bottom right,rgba(23, 32, 42,0.7) 10% , #000000 20%,#000000 80%, rgba(23, 32, 42,0.7) 90%);" data-aos="fade">
+        <div class="" style="background:black;padding:19px;">
+        <p class="logogradient"style="color:white;font-size:40px;margin:0px;text-align:center;font-family: 'Bodoni Moda', sans-serif;">Stay Tuned</p>
+        <p style="text-align:center;font-size:11px;color:#BFC9CA;">Subscribe to us & get latest updates delivered to your inbox.</p>
+        <form class=""  method="POST" action ="{% url 'home' %}">
+        {% csrf_token %}
+        <label  style="font-size:14px;color:white;font-weight:500;margin:0px;">Name</label>
+        <input type="text" class="form-control"  name="subscriber_name"  style="background:transparent;border:0px;
+        border-bottom:1px solid #1b2631;border-radius:0px;font-size:13px;color:white" required>
+        <br>
+        <label for="id_email" style="font-size:14px;color:white;font-weight:500;margin:0px;">Email</label>
+        <input type="email" class="form-control" name="subscriber_email"  style="background:transparent;border:0px;
+        border-bottom:1px solid #1b2631;border-radius:0px;font-size:13px;color:white" required>
+        <br>
+        {% for message in messages %}
+        <p style="text-align:center;color:lightgreen;font-size:13px">{{message}}</p>
+        {% endfor %}
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-light" style="border-radius:50px;font-weight:600;font-size:15px;border-width:0px;">Subscribe <i class="bi bi-bell"></i> </button>
+        </div>
+        </form>
+          </div>
+      </div>
+    </div>
+{% endblock content %}
+
+<div style="background-color: #090d10 ;padding:8px 0px 8px 0px;margin:0px;">
+  <p style="color:white;font-size:17px;font-weight:600;text-align:center;margin:0px;">The HeartBeat</p>
+  <hr color="#1b2631"style="margin:8px 0px 8px 0px;">
+
+  <div class="col-lg-8 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;">
+
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;">
+        <p style="font-size:12px;color:white;font-weight:600;margin:4px;">Contact Us</p>
+        <p style="font-size:11px;margin:4px;"><a style="color:#BDC3C7 ;"href="tel:7858832086"><i class="bi bi-telephone-fill" style="font-size:12px;"></i> &nbsp; 7858832086</a></p>
+        <p style="font-size:11px;margin:4px;"><a style="color:#BDC3C7 ;"href="mailto:mrinalmayank7@gmail.com"><i class="bi bi-envelope-fill"style="font-size:12px;"></i> &nbsp; mrinalmayank7@gmail.com</a></p>
+        <p style="font-size:11px;margin:4px;color:#BDC3C7">Reach Us - Upper Bazar, Near Trade Center,  Ranchi, Jharkhand 834001</p>
+        <br>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-4" style="margin-left:auto;margin-right:auto;">
+        <p style="font-size:12px;color:white;font-weight:600;margin:4px;">HeartBeat Tools</p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'diabetes_risk' %}">Diabetes Risk</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'cvd_prediction' %}">CVD Prediction</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'liver_diagnosis' %}">Liver Diagnosis</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'detect_brain_tumor' %}">Detect Brain Tumour</a></p>
+        <br>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-4" style="margin-left:auto;margin-right:auto;">
+        <p style="font-size:12px;color:white;font-weight:600;margin:4px;">Quick Links</p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'home' %}">Home </a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'article' %}">Articles</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'about' %}">About</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'howitworks' %}">How it works</a></p>
+        <br>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-4" style="margin-left:auto;margin-right:auto;">
+        <p style="font-size:12px;color:white;font-weight:600;margin:4px;">Connect</p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'user_login' %}">Log In</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'register' %}">Sign Up</a></p>
+        <p style="font-size:10.5px;margin:4px;"><a style="color:#BDC3C7 ;"href="{% url 'home' %}#subscribe">Subscribe</a></p>
+        <br>
+      </div>
+    </div>
+
+    <hr color="#3f5873"style="margin:5px 0px 5px 0px;">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+        <p style="font-size:11.5px;color:#797D7F;font-weight:400;">© 2021 Mrinal Mayank - All rights reserved.</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-6" style="margin-left:auto;margin-right:auto">
+        <p style="font-size:11px;"><a style="color:#BDC3C7 ;"href="{% url 'privacy' %}">Privacy Policy & Terms of use</a></p>
+      </div>
+      <div class="text-right col-lg-3 col-md-3 col-sm-6 col-6" style="margin-left:auto;margin-right:auto;">
+        <label style="font-size:15px;"><a style="color:#BDC3C7 ;"href="https://www.linkedin.com/in/mrinal-mayank-bb3112200/"><i class="bi bi-linkedin"></i></a>&nbsp;&nbsp;&nbsp;</label>
+        <label style="font-size:15px;"><a style="color:#BDC3C7 ;"href="https://github.com/mrinalmayank7/"><i class="bi bi-github"></i></a>&nbsp;&nbsp;&nbsp;</label>
+        <label style="font-size:15px;"><a style="color:#BDC3C7 ;"href="https://www.instagram.com/mrinalmayank7/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;</label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <style media="screen">
+        .navbackdrop{
+          backdrop-filter:blur(8px);
+        }
+      </style>
+
+      <style media="screen">
+          .backdrop{
+            backdrop-filter:blur(8px);
+          }
+        </style>
+  <script type="text/javascript" src="{% static 'jscript/jmain.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jscript/particles.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jscript/app.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous"></script>
+  <script >
+   $('.counter').counterUp({
+     delay: 10,
+     time: 4000
+  });
+  </script>
+  <script>
+  $(window).scroll(function () {
+    console.log($(window).scrollTop())
+    if ($(window).scrollTop() > 63) {
+      $('.navbar').addClass('navbar-fixed');
+    }
+    if ($(window).scrollTop() < 64) {
+      $('.navbar').removeClass('navbar-fixed');
+    }
+  });
+  </script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+ <script>
+   AOS.init({
+     duration: 3000,
+     offset: 100
+   });
+ </script>
+ <script>
+ $('video').each(function(){
+    if ($(this).is(":in-viewport")) {
+        $(this)[0].play();
+    } else {
+        $(this)[0].pause();
+    }
+})
+
+ </script>
+ <script>
+ var preloader = document.getElementById('loading');
+ function load(){
+   preloader.style.display ='none';
+ }
+
+ </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+  </body>
+</html>

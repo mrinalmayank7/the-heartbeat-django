@@ -1,0 +1,228 @@
+.navbar{
+    width:80%;
+
+}
+.navbar-fixed {
+background-color:rgba(255,255,255,0.08);
+width:100%;
+animation: fadeInAnimation ease 0.8s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+}
+
+.nav-link.navbttn :hover{
+  color:white;
+}
+
+.bground1 ,.bground2 , .hometextfade ,#particles-js{
+  animation: fadeInAnimation ease 7s;
+  animation-iteration-count: 1;
+  animation-fill-mode:backwards;
+}
+.bground2{
+background-size:cover;
+background-repeat: no-repeat;
+background-attachment:fixed;
+height:100%;
+width:100%;
+
+}
+
+
+ #particles-js{
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height:100%;
+  width:100%;
+}
+
+.form-control::placeholder {
+  color:#D6DBDF;
+}
+.toolinput::placeholder {
+  color:#A6ACAF;
+  font-size:13px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+.logogradient{
+  background:linear-gradient(to left , #182857 20% ,white 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statsgradient{
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient1{
+  background:linear-gradient(to right ,#3420FF 20% , #9F4FFF 60% );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient2{
+
+background: linear-gradient(114deg, rgba(45,81,255,1) 23%, rgba(255,70,226,1) 61%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.articlecard ,.articletextdiv{
+  background:white;
+  border-radius:13px;
+  padding:0px;
+  box-shadow:18px 18px 15px 0px rgba(0, 0, 0,0.6);
+
+}
+.articlecard ,.articleimage ,.loginwindow {
+animation: fadeInAnimation ease 3s;
+animation-iteration-count: 1;
+animation-fill-mode: backwards;
+}
+@keyframes fadeInimageAnimation {
+    100% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+@keyframes fadeoutAnimation {
+    100% {
+        opacity: 0;
+    }
+    0% {
+        opacity: 1;
+     }
+}
+
+.image2 {
+animation: fadeInimageAnimation  ease 999999999s;
+animation-iteration-count: infinite;
+animation-fill-mode: backwards;
+}
+.blackanimation{
+  animation: fadeoutAnimation  ease 6.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+
+.articleimage {
+  border-top:0.5px solid rgba(255,255,255,0.1);
+  border-left:0.5px  solid rgba(255,255,255,0.1);
+}
+
+.text-appear{
+  animation: fadeInAnimation ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+  background:linear-gradient(to right , #4885FF 20% ,white 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.toolcard ,.tooltextdiv{
+  background:white;
+  border-radius:13px;
+  padding:0px;
+  box-shadow:18px 18px 15px 0px rgba(0, 0, 0,0.6);
+
+}
+.toolimage ,.diabetesdiv2 ,.hiwfeatures {
+  border-top:0.5px solid rgba(255,255,255,0.3);
+  border-left:0.5px  solid rgba(255,255,255,0.3);
+}
+.tooldivtext{
+  background:linear-gradient(to top,black  ,white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.flipcard .card-back {
+    box-shadow:0px 0px 15px 0px rgba(0, 0, 0,0.3);
+    border-radius:5px;
+    border:0px;
+}
+
+.flipcard {
+  perspective: 1000px;
+  margin-bottom: 1.5rem;
+}
+.flipcard .flipcard-wrap {
+  position: relative;
+  width: 100%;
+  height:100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+
+}
+.flipcard .card-front,
+.flipcard .card-back {
+  width: 100%;
+  height:100%;
+  position: relative;
+  backface-visibility: hidden;
+  transition: all .3s;
+  border-radius:13px;
+}
+.flipcard .card-front {
+  z-index: 2;
+  border:0px;
+  padding:0px;
+  background:transparent;
+}
+.flipcard .card-front::after {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+}
+.flipcard .card-back {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  background:#030C19 ;
+  border-top:0.5px solid rgba(255,255,255,0.1);
+  border-left:0.5px  solid rgba(255,255,255,0.1);
+
+}
+
+.flipcard:hover .flipcard-wrap {
+  transform: rotateY(-180deg);
+}
+
+.glowicon:hover{
+  color:#6495ED;
+   text-decoration: none;
+ }
+
+ .hrtext {
+        display: flex;
+        flex-direction: row;
+    }
+    .hrtext:before,
+    .hrtext:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 2px solid white;
+        margin: auto;
+    }

@@ -1,0 +1,136 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="" style="background-color:#000515 ;">
+<br><br><br><br><br><br>
+<div class="container" style="padding-bottom:50px;">
+  <div class="row">
+
+    <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+      <div class="" style="width:100%;padding:0% 20% 0% 20%;"data-aos="zoom-in">
+        <p style="font-size:50px;color:white;">Sign Up</p>
+        <hr color="#1C2833" style="margin:8px;margin-bottom:20px;">
+        {%  if registered %}
+  {% for message in messages %}
+  <p style="text-align:center;color:#24FF60;font-size:13px">{{message}}</p>
+  {% endfor %}
+  <div class="text-center">
+  <p style="font-size:13px;color:#BFC9CA;">You can now login to your registered account, We are excited to host you.</p>
+  <a class="btn btn-outline-primary" href="{% url 'user_login' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700">Log In</a>
+  </div>
+  {% elif user.is_authenticated %}
+  <div class="text-center">
+    <p style="color:#24FF60;font-size:13px">You are already registered.</p>
+    <a class="btn btn-light" href="{% url 'home' %}"
+    style="border-radius:80px;font-size:14px;background:white;font-weight:700;">Back to home <i class="bi bi-chevron-double-right"></i></a>
+
+  </div>
+  {% elif user_form.errors %}
+  <div style="color:#FF3737;font-size:13px;">{{user_form.errors}}</div>
+  <div class="text-center">
+  <a class="btn btn-outline-primary" href="{% url 'user_login' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;margin:10px;">Log In</a>
+  <a class="btn btn-outline-primary" href="{% url 'register' %}" style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700;margin:10px;">Sign Up</a>
+  </div>
+
+  {% else %}
+
+  <form class="needs-validation" action="{% url 'register' %}" enctype="multipart/form-data" method="POST" novalidate>
+    {% csrf_token %}
+    <div class="required_fields">
+      <input type="text" class="form-control"name="first_name"  placeholder="First Name"
+      style=" background: linear-gradient(to right ,#050C22, #182857 );border:0px;border-radius:50px;padding:20px;font-size:13px;color:white;" required>
+      <div class="invalid-feedback">
+        <p style="font-size:12px;margin:3px;text-align:right;">Invalid details</p>
+      </div>
+    </div><br>
+    <div class="required_fields">
+      <input type="text" class="form-control"name="last_name"  placeholder="Last Name"
+      style=" background: linear-gradient(to right ,#050C22, #182857 );border:0px;border-radius:50px;padding:20px;font-size:13px;color:white;" required>
+      <div class="invalid-feedback">
+        <p style="font-size:12px;margin:3px;text-align:right;">Invalid details</p>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#BFC9CA;margin:11px 0px 4px 5px;">Use only letters & digits</p>
+    <div class="required_fields">
+      <input type="text" class="form-control"name="username" pattern="(?=.{1,50}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])" placeholder="Username"
+      style=" background: linear-gradient(to right ,#050C22, #182857 );border:0px;border-radius:50px;padding:20px;font-size:13px;color:white;" required>
+      <div class="invalid-feedback">
+        <p style="font-size:12px;margin:3px;text-align:right;">Invalid username</p>
+      </div>
+    </div>
+
+    <p style="font-size:11px;color:#BFC9CA;margin:11px 0px 4px 5px;">Minimum eight characters</p>
+  <div class="required_fields">
+    <input type="password" class="form-control" id="myInput" name="password" pattern="().{8,}" placeholder="Password"
+    style=" background: linear-gradient(to right ,#050C22, #182857 );border:0px;border-radius:50px;padding:20px;font-size:13px;color:white;" required>
+    <div class="invalid-feedback">
+      <p style="font-size:12px;margin:3px;text-align:right;">Invalid password</p>
+    </div>
+    <input type="checkbox"  onclick="myFunction()">
+    <label for="myInput"><small class="form-text text-muted">Show Password</small></label>
+  </div>
+
+  <div class="required_fields">
+    <input type="email" class="form-control"name="email" placeholder="Email"
+    style=" background: linear-gradient(to right ,#050C22, #182857 );border:0px;border-radius:50px;padding:20px;font-size:13px;color:white;" required>
+    <div class="invalid-feedback">
+      <p style="font-size:12px;margin:3px;text-align:right;">Invalid email</p>
+    </div>
+  </div>
+
+    <div class="text-center">
+      <br>
+    <input type="submit" class="btn btn-outline-primary  text-center" value=" Sign Up " style="border-radius:30px;border-width:2px;font-size:16px;margin:auto;font-weight:700"">
+    </div>
+  </form>
+<br><br>
+  {% endif  %}
+
+  </div>
+</div>
+
+    <div class="col-lg-6 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;">
+      <div class="" style="width:100%;padding:0% 10% 0% 10%;">
+        <div style="border-left:1px solid #081121  ;padding:0% 10% 0% 10%;">
+
+        <p class="logogradient"style="font-size:35px;font-weight:400;color:white;font-family:'Codystar', cursive;margin-bottom:0px;">The</p>
+        <p class="logogradient"style="font-size:35px;font-weight:400;color:white;font-family:'Codystar', cursive;">HeartBeat</p>
+
+        <p style="font-size:13px;color:#BFC9CA;"><b>The Heartbeat</b> is your intelligent diagnostic expert integrated with widely used machine learning models with 90% of accuracy. </p>
+        <p style="font-size:13px;color:#BFC9CA;">We offer variety of tools to predict the presence of diabetes,cardiovascular disease , Brain Tumour & few more. Apart from this the user can also dive in the pool of healthcare articles & subscribe to our newsletter to get latest updates.</p>
+        <label style="font-size:13px;font-weight:400;color:white;">The HeartBeat Team </label>
+        <hr color="#1C2833" style="margin:0px;margin-bottom:15px;margin-right:50%;">
+        <p style="font-size:12px;font-weight:400;color:white;margin:0px;">Founder . <i> Mrinal Mayank</i></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
+</script>
+
+
+{% endblock content %}

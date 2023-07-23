@@ -1,0 +1,261 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground1"style="background-color:#000515 ;" >
+  <br>  <br><br><br>
+  <div class="container" style="margin-left:auto;margin-right:auto;padding:6%;">
+
+      <div class="row" style="margin-bottom:20px;">
+        <div class="col-lg-7 col-md-11 col-sm-11 col-12" style="padding: 20px 20px 20px 10px;margin-left:auto;margin-right:auto;">
+          <p  class="gradient1"style="color:white;font-size:50px;font-weight:700;font-family: 'Bodoni Moda', serif;">CVD <label style="font-size:18px;color:white;font-family: 'Sen', sans-serif;font-weight:400;margin:0px;">Prediction</label> </p>
+          <p style="font-size:12px;color:white;font-weight:400;">The cardiovascular disease prediction tool comes with eleven input fields which is used for diagnosing the presence of cardiovascular disease. Developed with widely used <label style="color:#AFFFAD;margin:0px;"> Random Forest Algorithm </label> which is used for both classification and regression problems, to produce a predictive model.</p>
+        </div>
+        <div class="col-lg-5 col-md-11 col-sm-11 col-12"style="padding: 0px 30px 0px 30px;margin-left:auto;margin-right:auto;">
+          <br>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6"style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;background:blue;padding:10px;" data-aos="fade-down">
+              <div style="width:100%">
+                <p style="text-align:center;font-size:24px;color:white;margin:0px;font-weight:700;padding:16px;border-radius:100px;border:3px solid white;margin-right:auto;margin-left:auto;width:80px;height:80px;">90.5</p>
+                <p class=""style="text-align:center;font-size:12px;color:white;font-weight:400;margin:5px;">% Tool Prediction Accuracy</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6"style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;background:#1E90FF;padding:10px;"data-aos="fade-up">
+              <div style="width:100%">
+                <p style="text-align:center;font-size:30px;color:white;margin:0px;font-weight:700;padding:16px;border-radius:100px;border:3px solid white;margin-right:auto;margin-left:auto;width:80px;height:80px;"><i class="bi bi-envelope"></i></p>
+                <p style="text-align:center;font-size:12px;color:white;font-weight:400;margin:5px;">Mail Delivered Outcomes for registered users</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    <div class="row">
+      <div class="col-lg-7 col-md-11 col-sm-11 col-11" style="margin-left:auto;margin-right:auto;padding:15px;background:rgba(255,255,255,1);border-radius:13px;margin-bottom:20px;"data-aos="zoom-in">
+        <p style="text-align:center;font-size:12px;margin:5px;color:grey">Disclaimer. These outcomes are for quick informational purposes only, Consult your local medical authority for advice.</p>
+        <hr style="margin-top:0px;">
+
+
+        <form method="post" enctype="multipart/form-data" action ="{% url 'cvd_prediction_result' %}">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:20px;">
+            <div style="width:100%;padding:10px;">
+              <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:5px;">Age</label>
+              <input type="number" class="toolinput form-control"name="val1" placeholder="age in years" style=" background:white;border:1px solid #CACFD2 ;
+              border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;"  required>
+              <label for="val4" style="font-size:14px;color:black;font-weight:700;margin:5px;">Resting blood pressure</label>
+              <input type="number" class="toolinput form-control"name="val4" placeholder="In mm Hg " style=" background:white;border:1px solid #CACFD2 ;
+              border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;" required>
+              <label for="val5" style="font-size:14px;color:black;font-weight:700;margin:5px;">Cholesterol</label>
+              <input type="number" class="toolinput form-control"name="val5" placeholder="serum cholestoral in mg/dl" style=" background:white;border:1px solid #CACFD2 ;
+              border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;" required>
+              <label for="val8" style="font-size:14px;color:black;font-weight:700;margin:5px;">Thalach</label>
+              <input type="number" class="toolinput form-control"name="val8" placeholder="maximum heart rate achieved" style=" background:white;border:1px solid #CACFD2 ;
+              border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;" required>
+              <label for="val10" style="font-size:14px;color:black;font-weight:700;margin:5px;">Oldpeak</label>
+              <input type="number" step="any" class="toolinput form-control"name="val10" placeholder="ST depression induced by exercise relative to rest" style=" background:white;border:1px solid #CACFD2 ;
+              border-radius:40px;padding:18px;font-size:14px;color:black;margin-bottom:10px;" required>
+
+              <label for="val2" style="font-size:14px;color:black;font-weight:700;margin:4px;">Gender</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="1" type="radio" name="val2" id="male"checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="male">Male</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val2" id="female" >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="female">Female</label>
+              </div>
+              </div>
+
+              <label for="val6" style="font-size:14px;color:black;font-weight:700;margin:4px;margin-top:13px;">Fasting blood sugar > 120 mg/dl</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="1" type="radio" name="val6" id="yes"checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="yes">Yes</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val6" id="no" >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="no">No</label>
+              </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:20px;">
+            <div style="width:100%;padding:10px;">
+
+              <label for="val3" style="font-size:14px;color:black;font-weight:700;margin:4px;">Chest pain type</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="3" type="radio" name="val3" id="typicalangina"checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="typicalangina">Typical angina</label>
+              <br>
+              <input class="form-check-input" value="2" type="radio" name="val3" id="non-anginalpain">
+              <label style="font-size:14px;color:#566573;font-weight:400;"class="form-check-label"  for="non-anginalpain">Non-anginal pain</label>
+              <br>
+              <input class="form-check-input" value="1" type="radio" name="val3" id="atypicalangina" >
+              <label style="font-size:14px;color:#566573;font-weight:400;"class="form-check-label" for="atypicalangina">Atypical angina</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val3" id="asymptomatic" >
+              <label style="font-size:14px;color:#566573;font-weight:400;" class="form-check-label" for="asymptomatic">Asymptomatic</label>
+              </div>
+              </div>
+
+
+              <label for="val7" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">Resting electrocardiographic results</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="2" type="radio" name="val7" id="stt" checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="stt">Having ST-T wave abnormality</label>
+              <br>
+              <input class="form-check-input" value="1" type="radio" name="val7" id="normal">
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="normal">Normal</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val7" id="ventricular">
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="ventricular">Probable/definite left ventricular hypertrophy</label>
+              </div>
+              </div>
+
+              <label for="val9" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">Exercise induced angina</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="1" type="radio" name="val9" id="exangyes"checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for=" exangyes">Yes</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val9" id="exangno" >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="exangno">No</label>
+              </div>
+              </div>
+
+              <label for="val11" style="font-size:14px;color:black;font-weight:700;margin:5px;margin-top:15px;">Slope of the peak exercise ST segment</label>
+              <div class="" style="background:white;padding:10px;border-radius:13px;border:1px solid #CACFD2;">
+              <div class="form-check">
+              <input class="form-check-input" value="2" type="radio" name="val11" id="Upsloping"checked >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Upsloping">Upsloping</label>
+              <br>
+              <input class="form-check-input" value="1" type="radio" name="val11" id="Flat" >
+              <label style="font-size:14px;color:#566573 ;font-weight:400;" class="form-check-label" for="Flat">Flat</label>
+              <br>
+              <input class="form-check-input" value="0" type="radio" name="val11" id="Downsloping">
+              <label style="font-size:14px;color:#566573 ;font-weight:400;"class="form-check-label"  for="Downsloping">Downsloping</label>
+              </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+        <button type="submit" value="Submit" class="btn btn-outline-primary" style="border-radius:50px;font-weight:600;border-width:2px;font-size:15px;"> Get Results <i class="bi bi-chevron-double-right"></i></button>
+       </div>
+       </form>
+      </div>
+      <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+          {% if output1 or output2 or output1 == 0 %}
+          <div style="margin-left:auto;margin-right:auto;margin-bottom:15px;background:rgba(255,255,255,0.02)">
+            <table class="table table-striped table-borderless  table-sm table-dark" style="background:transparent">
+              <thead><tr><td scope="row"> </td><td style="font-size:14px;font-weight:600;">Measures</td><td  style="font-size:14px;font-weight:600;">Input</td></tr></thead>
+            <tbody
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">1</td><td style="font-size:12px;color:#E5E8E8">Age</td><td style="font-size:12px;color:white;font-weight:600;">{{age}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">2</td><td style="font-size:12px;color:#E5E8E8">Resting blood pressure</td><td style="font-size:12px;color:white;font-weight:600;">{{tb}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">3</td><td style="font-size:12px;color:#E5E8E8">Cholesterol  </td><td style="font-size:12px;color:white;font-weight:600;">{{cl}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">4</td><td style="font-size:12px;color:#E5E8E8">Thalach </td><td style="font-size:12px;color:white;font-weight:600;">{{thal}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">5</td><td style="font-size:12px;color:#E5E8E8">Oldpeak </td><td style="font-size:12px;color:white;font-weight:600;">{{old}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">6</td><td style="font-size:12px;color:#E5E8E8">Gender</td><td style="font-size:12px;color:white;font-weight:600;">{{genderText}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">7</td><td style="font-size:12px;color:#E5E8E8">Fasting blood sugar > 120 mg/dl </td><td style="font-size:12px;color:white;font-weight:600;">{{fbsText}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">8</td><td style="font-size:12px;color:#E5E8E8">Chest pain type </td><td style="font-size:12px;color:white;font-weight:600;">{{cpText}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">9</td><td style="font-size:12px;color:#E5E8E8">Resting electrocardiographic results</td><td style="font-size:12px;color:white;font-weight:600;">{{restecgText}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">10</td><td style="font-size:12px;color:#E5E8E8">Exercise induced angina</td><td style="font-size:12px;color:white;font-weight:600;">{{exangText}}</td></tr>
+              <tr><td scope="row"style="font-size:12px;color:#E5E8E8">11</td><td style="font-size:12px;color:#E5E8E8">Slope of the peak exercise ST segment</td><td style="font-size:12px;color:white;font-weight:600;">{{slopeText}}</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;margin-bottom:15px;padding:13px;border-radius:10px;background: white"">
+             <p style="color:black;font-size:16px;text-align:center;font-weight:600;"><i class="fa fa-heartbeat" aria-hidden="true"></i> Outcome</p>
+             <hr>
+             {% if output1 > 80 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">CVD Risk <label style="margin:0px;color:#ff0000;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#ff0000;font-weight:700;font-size:14px;">Lower possibility of  cardiovascular disease.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#ff0000;font-weight:700;font-size:14px;">Higher risk of cardiovascular disease, consult your local medical authority for advice.</p>
+             {% endif %}
+
+             {% elif output1 > 60 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">CVD Risk <label style="margin:0px;color:#c26629;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#c26629;font-weight:700;font-size:14px;">Lower possibility of  cardiovascular disease.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#c26629;font-weight:700;font-size:14px;">Higher risk of cardiovascular disease, consult your local medical authority for advice.</p>
+             {% endif %}
+
+             {% elif output1 > 40 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">CVD Risk <label style="margin:0px;color:#cccc00;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#cccc00;font-weight:700;font-size:14px;">Lower possibility of  cardiovascular disease.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#cccc00;font-weight:700;font-size:14px;">Higher risk of cardiovascular disease, consult your local medical authority for advice.</p>
+             {% endif %}
+
+             {% elif output1 > 20 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">CVD Risk <label style="margin:0px;color:#9ca642;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#9ca642;font-weight:700;font-size:14px;">Lower possibility of  cardiovascular disease.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#9ca642;font-weight:700;font-size:14px;">Higher risk of cardiovascular disease, consult your local medical authority for advice.</p>
+             {% endif %}
+
+             {% else %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">CVD Risk <label style="margin:0px;color:#66ff66;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#66ff66;font-weight:700;font-size:14px;">Lower possibility of  cardiovascular disease.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#66ff66;font-weight:700;font-size:14px;">Higher risk of cardiovascular disease, consult your local medical authority for advice.</p>
+             {% endif %}
+             {% endif %}
+             <div class="text-center">
+               <br><br>
+               <a class="btn btn-outline-primary" href="{% url 'cvd_prediction'%}" style="border-radius:30px;border-width:1px;font-size:13px;margin:auto;font-weight:600;margin-bottom:20px;">Start new search <i class="bi bi-chevron-double-right"></i></a>
+             </div>
+
+         </div>
+         {% else %}
+          <div style="margin-left:auto;margin-right:auto;margin-bottom:15px;background:rgba(255,255,255,0.02);">
+              <table class="table table-striped table-borderless  table-sm table-dark" style="background:transparent">
+                <thead><tr><td scope="row"> </td><td style="font-size:14px;font-weight:600;">Measures</td><td  style="font-size:14px;font-weight:600;">Input</td></tr></thead>
+              <tbody>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">1</td><td style="font-size:12px;color:#E5E8E8">Age</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">2</td><td style="font-size:12px;color:#E5E8E8">Resting blood pressure</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">3</td><td style="font-size:12px;color:#E5E8E8">Cholesterol  </td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">4</td><td style="font-size:12px;color:#E5E8E8">Thalach </td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">5</td><td style="font-size:12px;color:#E5E8E8">Oldpeak </td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">6</td><td style="font-size:12px;color:#E5E8E8">Gender</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">7</td><td style="font-size:12px;color:#E5E8E8">Fasting blood sugar > 120 mg/dl </td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">8</td><td style="font-size:12px;color:#E5E8E8">Chest pain type </td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">9</td><td style="font-size:12px;color:#E5E8E8">Resting electrocardiographic results</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">10</td><td style="font-size:12px;color:#E5E8E8">Exercise induced angina</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+                <tr><td scope="row"style="font-size:12px;color:#E5E8E8">11</td><td style="font-size:12px;color:#E5E8E8">Slope of the peak exercise ST segment</td><td style="font-size:12px;color:white;font-weight:600;">NA</td></tr>
+              </tbody>
+            </table>
+      </div>
+           <div class="col-lg-12 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;margin-bottom:15px;padding:13px;border-radius:10px;background: white"">
+              <p style="color:black;font-size:16px;text-align:center;font-weight:600;"><i class="fa fa-heartbeat" aria-hidden="true"></i> Outcome</p>
+              <hr>
+              <p style="text-align:center;color:grey;font-size:12px;">No measures provided for prediction.</p>
+          </div>
+          {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

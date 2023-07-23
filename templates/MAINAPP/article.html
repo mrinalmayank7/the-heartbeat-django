@@ -1,0 +1,72 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground1" style="">
+<div class="container" style="position:relative;">
+    <br>
+  <div  style="margin-right:auto;margin-left:auto;position:absolute;z-index:-2;">
+          <img class="d-block justify-content-center"src="{% static 'images/img1.jpg'%}" style="max-width:100%;" >
+  </div>
+<br><br><br><br><br>
+  <div class="gradient2">
+  <p style="text-align:center;color:white;font-weight:600;font-size:50px;margin:5px;font-family: 'Bodoni Moda', sans-serif;">The Reads</p>
+  </div>
+  <p style="text-align:center;color:white;font-size:14px;margin-bottom:30px;font-weight:600;margin-bottom:0px;">“Our lives begin to end the day we become silent about things that matter.”</p>
+  <p style="text-align:center;color:white;font-size:14px;margin-bottom:30px;font-weight:400;margin:0px;"><i>- Martin Luther King Jr.-</i></p>
+
+
+  <div class="col-lg-10 col-md-12 col-sm-12  col-12" style="margin-left:auto;margin-right:auto;padding:15px;"data-aos="zoom-in">
+    <div class="text-right">
+          <div class="dropdown dropleft" style="">
+           <button id="dropdownMenuButton" data-toggle="dropdown"style="
+           font-size:25px;background:transparent;border:0px;color:white;">
+            <i class="bi bi-three-dots"></i>
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+           style="background:white;border-radius:10px;padding:20px;width:30vh;">
+             <p style="color:#4D94EA;margin:5px;font-size:16px;font-weight:600;font-family: 'Comfortaa', cursive;text-align:center;">Newly Added</p>
+             <hr  style="margin:5px;">
+
+        {% for topic in topics %}
+        {% if forloop.counter < 6 %}
+        <p style="margin-bottom:0px;"><a data-product="{{ topic.id }}" href="{% url 'read_article' topic.id %}"
+          style="font-size:13px;color:black;margin-bottom:0px;font-weight:700;">{{topic.article_name}}</a></p>
+          <p style="font-size:10.5px;color:grey;margin-bottom:0px;">Posted on : {{topic.posted_on}}</p>
+          <hr style="margin-top:5px;margin-bottom:5px">
+      {% endif %}
+      {% endfor %}
+           </div>
+          </div>
+    </div>
+    <div class="row">
+        {% for page in pages %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;padding:10px;">
+          <div class=" flipcard navbackdrop" style="margin:0px;padding:0px;border-radius:10px;"data-aos="zoom-in-up">
+             <div class="flipcard-wrap" >
+               <div class="homearticleborder card card-front " >
+                 <div class="" style="width:100%;background:rgba(255,255,255,0.25);padding:20px;border-radius:10px;border-top:0.5px solid rgba(255,255,255,0.3); border-left:0.5px  solid rgba(255,255,255,0.3);">
+                   <p style="text-align:center;font-size:14px;color:white;font-weight:600;margin:0px;">{{ page.article_name}}</p>
+                   <p style="text-align:center;font-size:12px;color:#BFC9CA;">Posted on. {{ page.posted_on}}</p>
+                   <img src="{{ page.article_imageURL }}"  style="width:100%;padding:0px;border-radius:10px;" >
+
+                 </div>
+                </div>
+                <div class="card card-back" style="background:rgba(255,255,255,0.25);border-top:0.5px solid rgba(255,255,255,0.3); border-left:0.5px  solid rgba(255,255,255,0.3);">
+                  <div class="card-body" style="padding:15px;">
+                    <p style="text-align:center;font-size:12px;color:#BFC9CA;"><b>Brief. </b>{{ page.article_caption}}</p>
+                    <a class="btn btn-outline-primary"data-product="{{ page.id }}"  href="{% url 'read_article' page.id %}" style="border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:700;">Read <i class="bi bi-chevron-double-right"></i></a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+     </div>
+
+  </div>
+  <br><br>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,277 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground1" style="background-color:#000515 ;" >
+  <br><br><br><br><br>
+  <div class="container" style="margin-left:auto;margin-right:auto;padding:5%;">
+    <div class="row" style="margin-bottom:20px;padding:15px;">
+      <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="background:linear-gradient(to right, transparent ,#000080 ) ;display:flex;flex-wrap:wrap" >
+        <p  class="gradient1"style="color:white;font-size:50px;font-weight:700;font-family: 'Bodoni Moda', serif;">Brain Tumour <label style="font-size:18px;color:white;font-family: 'Sen', sans-serif;font-weight:400;margin:0px;">Prediction</label></p>
+        <p style="font-size:12px;color:white;font-weight:400;">The tool  is designed to assist the specialists in detecting brain tumour with the help of MRI extracted features which predict the outcome in seconds by providing the feature input to the prediction tool. Developed with widely used <label style="color:#AFFFAD;margin:0px;"> Random Forest Algorithm.</label></p>
+      </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-6"style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;background:blue;padding:10px;"data-aos="fade-up">
+            <div style="width:100%">
+              <p style="text-align:center;font-size:24px;color:white;margin:0px;font-weight:700;padding:16px;border-radius:100px;border:3px solid white;margin-right:auto;margin-left:auto;width:80px;height:80px;">92</p>
+              <p class=""style="text-align:center;font-size:12px;color:white;font-weight:400;margin:5px;">% Tool Prediction Accuracy</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-6"style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;background:#1E90FF;padding:10px;"data-aos="fade-down">
+            <div style="width:100%">
+              <p style="text-align:center;font-size:30px;color:white;margin:0px;font-weight:700;padding:16px;border-radius:100px;border:3px solid white;margin-right:auto;margin-left:auto;width:80px;height:80px;"><i class="bi bi-envelope"></i></p>
+              <p style="text-align:center;font-size:12px;color:white;font-weight:400;margin:5px;">Mail Delivered Outcomes for registered users</p>
+            </div>
+          </div>
+    </div>
+
+
+
+    <div class="row">
+    <div class="col-lg-7 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;"data-aos="fade-up">
+    <div style="width:100%;background:white;padding:20px;border-radius:13px;">
+          <p style="text-align:center;font-size:12px;color:#ABB2B9 ;">Disclaimer. These outcomes are for quick informational purposes only, Consult your local medical authority for advice.</p>
+
+         <form method="post" enctype="multipart/form-data" action ="{% url 'detect_brain_tumor_result' %}">
+          {% csrf_token %}
+          <p class="gradient1"style="font-size:15px;text-align:center;font-weight:700;">First Order Features</p>
+          <hr>
+          <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+              <label for="val1" style="font-size:14px;color:black;font-weight:700;margin:0px;">Mean</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-7" style="width:100%">
+             <input type="number"  step="any"class="toolinput form-control"name="val1"  style=" background:#E2EDFF ;border:0px;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+              <label for="val2" style="font-size:14px;color:black;font-weight:700;margin:0px;">Variance</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-7" style="width:100%">
+             <input type="number"  step="any"class="toolinput form-control"name="val2"  style=" background:#E2EDFF ;border:0px;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+              <label for="val3" style="font-size:14px;color:black;font-weight:700;margin:0px;">Standard Deviation</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-7" style="width:100%">
+             <input type="number"  step="any"class="toolinput form-control"name="val3" style=" background:#E2EDFF ;border:0px;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+              <label for="val5" style="font-size:14px;color:black;font-weight:700;margin:0px;">Skewness</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-7" style="width:100%">
+             <input type="number"  step="any"class="toolinput form-control"name="val5" style=" background:#E2EDFF ;border:0px;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+          </div>
+
+          <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+              <label for="val6" style="font-size:14px;color:black;font-weight:700;margin:0px;">Kurtosis</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 col-7" style="width:100%">
+             <input type="number"  step="any"class="toolinput form-control"name="val6"  style=" background:#E2EDFF ;border:0px;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+          </div>
+          </div>
+          <br>
+
+
+          <p class="gradient1"style="font-size:15px;text-align:center;font-weight:700;">Second Order Features</p>
+          <hr>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val4"  placeholder="Entropy"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val7"  placeholder="Contrast"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val8"  placeholder="Energy"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val9"  placeholder="ASM"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val10"  placeholder="Homogeneity"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val11"  placeholder="Dissimilarity"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val12"  placeholder="Correlation"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="width:100%">
+               <input type="number"  step="any"class="toolinput form-control"name="val13"  placeholder="Coarseness"style=" background:white ;
+                border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+          </div>
+
+          <br><p class="gradient1"style="font-size:15px;text-align:center;font-weight:700;">Others</p>
+          <hr>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3" style="width:100%">
+              <label for="val14" style="font-size:14px;color:black;font-weight:700;margin:0px;">PSNR</label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9" style="width:100%">
+              <input type="number"  step="any"class="toolinput form-control"name="val14"  placeholder="Peak Signal-to-Noise Ratio"style=" background:white;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3" style="width:100%">
+              <label for="val15" style="font-size:14px;color:black;font-weight:700;margin:0px;">SSIM</label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9" style="width:100%">
+              <input type="number"  step="any"class="toolinput form-control"name="val15"  placeholder="Structured Similarity Index"style=" background:white;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3" style="width:100%">
+              <label for="val16" style="font-size:14px;color:black;font-weight:700;margin:0px;">MSE</label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9" style="width:100%">
+              <input type="number"  step="any"class="toolinput form-control"name="val16"  placeholder="Mean Square Error"style=" background:white;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3" style="width:100%">
+              <label for="val17" style="font-size:14px;color:black;font-weight:700;margin:0px;">DC</label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9" style="width:100%">
+              <input type="number"  step="any"class="toolinput form-control"name="val17"  placeholder="Dice Coefficient"style=" background:white;
+              border-radius:40px;padding:16px;font-size:13px;color:black;margin-bottom:7px;" required>
+            </div>
+          </div>
+      <br>
+  <div class="text-center">
+   <button type="submit" value="Submit" class="btn btn-outline-primary" style="border-radius:50px;border-width:2px;font-weight:600;"> Get Results <i class="bi bi-chevron-double-right"></i></button>
+  </div>
+  </form>
+
+</div>
+</div>
+      <div class="col-lg-5 col-md-10 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;">
+        {% if output1 or output2 or output1 == 0 %}
+        <div class="" style="width:100%;margin-bottom:20px;">
+          <table class="table table-striped table-borderless  table-sm table-dark" style="background:transparent;">
+          <thead><tr><td scope="row"> </td><td style="font-size:15px;font-weight:600;">Measures</td><td  style="font-size:15px;font-weight:600;">Input</td></tr></thead>
+          <tbody>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">1</td><td style="font-size:13px;color:#E5E8E8">Mean</td><td style="font-size:13px;color:white;font-weight:600;">{{Mean}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">2</td><td style="font-size:13px;color:#E5E8E8">Variance</td><td style="font-size:13px;color:white;font-weight:600;">{{Variance}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">3</td><td style="font-size:13px;color:#E5E8E8">Standard Deviation </td><td style="font-size:13px;color:white;font-weight:600;">{{StandardDeviation}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">4</td><td style="font-size:13px;color:#E5E8E8">Skewness</td><td style="font-size:13px;color:white;font-weight:600;">{{Skewness}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">5</td><td style="font-size:13px;color:#E5E8E8">Kurtosis</td><td style="font-size:13px;color:white;font-weight:600;">{{Kurtosis}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">6</td><td style="font-size:13px;color:#E5E8E8">Entropy</td><td style="font-size:13px;color:white;font-weight:600;">{{Entropy}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">7</td><td style="font-size:13px;color:#E5E8E8">Contrast</td><td style="font-size:13px;color:white;font-weight:600;">{{Contrast}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">8</td><td style="font-size:13px;color:#E5E8E8">Energy</td><td style="font-size:13px;color:white;font-weight:600;">{{Energy}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">9</td><td style="font-size:13px;color:#E5E8E8">ASM</td><td style="font-size:13px;color:white;font-weight:600;">{{ASM}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">10</td><td style="font-size:13px;color:#E5E8E8">Homogeneity</td><td style="font-size:13px;color:white;font-weight:600;">{{Homogeneity}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">11</td><td style="font-size:13px;color:#E5E8E8">Dissimilarity</td><td style="font-size:13px;color:white;font-weight:600;">{{Dissimilarity}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">12</td><td style="font-size:13px;color:#E5E8E8">Correlation</td><td style="font-size:13px;color:white;font-weight:600;">{{Correlation}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">13</td><td style="font-size:13px;color:#E5E8E8">Coarseness</td><td style="font-size:13px;color:white;font-weight:600;">{{Coarseness}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">14</td><td style="font-size:13px;color:#E5E8E8">PSNR</td><td style="font-size:13px;color:white;font-weight:600;">{{PSNR}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">15</td><td style="font-size:13px;color:#E5E8E8">SSIM</td><td style="font-size:13px;color:white;font-weight:600;">{{SSIM}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">16</td><td style="font-size:13px;color:#E5E8E8">MSE</td><td style="font-size:13px;color:white;font-weight:600;">{{MSE}}</td></tr>
+            <tr><td scope="row"style="font-size:13px;color:#E5E8E8">17</td><td style="font-size:13px;color:#E5E8E8">DC</td><td style="font-size:13px;color:white;font-weight:600;">{{DC}}</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div  style="width:100%;margin-bottom:20px;padding:20px;background:white;border-radius:10px;">
+           <p style="color:black;font-size:20px;text-align:center;font-weight:600;"><i class="fa fa-heartbeat" aria-hidden="true"></i> Outcome</p>
+             <hr color="#212F3D ">
+             {% if output1 > 80 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">Possibility <label style="margin:0px;color:#ff0000;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#ff0000;font-weight:700;font-size:14px;">Possibility of brain tumour is negligible.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#ff0000;font-weight:700;font-size:14px;">Higher possibility of brain tumour detected.</p>
+             {% endif %}
+
+             {% elif output1 > 60 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">Possibility <label style="margin:0px;color:#c26629;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#c26629;font-weight:700;font-size:14px;">Possibility of brain tumour is negligible.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#c26629;font-weight:700;font-size:14px;">Higher possibility of brain tumour detected.</p>
+             {% endif %}
+
+             {% elif output1 > 40 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">Possibility <label style="margin:0px;color:#cccc00;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#cccc00;font-weight:700;font-size:14px;">Possibility of brain tumour is negligible.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#cccc00;font-weight:700;font-size:14px;">Higher possibility of brain tumour detected.</p>
+             {% endif %}
+
+             {% elif output1 > 20 %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">Possibility <label style="margin:0px;color:#9ca642;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#9ca642;font-weight:700;font-size:14px;">Possibility of brain tumour is negligible.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#9ca642;font-weight:700;font-size:14px;">Higher possibility of brain tumour detected.</p>
+             {% endif %}
+
+             {% else %}
+             <p style="margin:0px;color:black;font-size:14px;font-weight:700;">Possibility <label style="margin:0px;color:#66ff66;" >&nbsp;&nbsp;{{ output1 }} %</label></p>
+             {% if output2 < 1 %}
+             <p style="margin:0px;color:#66ff66;font-weight:700;font-size:14px;">Possibility of brain tumour is negligible.</p>
+             {% else %}
+             <br>
+             <p style="margin:0px;color:#66ff66;font-weight:700;font-size:14px;">Higher possibility of brain tumour detected.</p>
+             {% endif %}
+             {% endif %}
+
+             <div class="text-center">
+               <br><br>
+               <a class="btn btn-outline-primary" href="{% url 'detect_brain_tumor'%}" style="border-radius:30px;border-width:2px;font-size:14px;margin:auto;font-weight:700;margin-bottom:20px;">Start new search <i class="bi bi-chevron-double-right"></i></a>
+             </div>
+
+
+       </div>
+
+        {% else %}
+  <div class="" style="width:100%;margin-bottom:20px;">
+  <table class="table table-striped table-borderless  table-sm table-dark" style="background:transparent;">
+  <thead><tr><td scope="row"> </td><td style="font-size:15px;font-weight:600;">Measures</td><td  style="font-size:15px;font-weight:600;">Input</td></tr></thead>
+  <tbody>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">1</td><td style="font-size:13px;color:#E5E8E8">Mean</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">2</td><td style="font-size:13px;color:#E5E8E8">Variance</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">3</td><td style="font-size:13px;color:#E5E8E8">Standard Deviation </td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">4</td><td style="font-size:13px;color:#E5E8E8">Skewness</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">5</td><td style="font-size:13px;color:#E5E8E8">Kurtosis</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">6</td><td style="font-size:13px;color:#E5E8E8">Entropy</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">7</td><td style="font-size:13px;color:#E5E8E8">Contrast</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">8</td><td style="font-size:13px;color:#E5E8E8">Energy</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">9</td><td style="font-size:13px;color:#E5E8E8">ASM</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">10</td><td style="font-size:13px;color:#E5E8E8">Homogeneity</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">11</td><td style="font-size:13px;color:#E5E8E8">Dissimilarity</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">12</td><td style="font-size:13px;color:#E5E8E8">Correlation</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">13</td><td style="font-size:13px;color:#E5E8E8">Coarseness</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">14</td><td style="font-size:13px;color:#E5E8E8">PSNR</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">15</td><td style="font-size:13px;color:#E5E8E8">SSIM</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">16</td><td style="font-size:13px;color:#E5E8E8">MSE</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+    <tr><td scope="row"style="font-size:13px;color:#E5E8E8">17</td><td style="font-size:13px;color:#E5E8E8">DC</td><td style="font-size:13px;color:white;font-weight:600;">NA</td></tr>
+  </tbody>
+</table>
+</div>
+        <div  style="width:100%;margin-bottom:20px;padding:20px;background:white;border-radius:10px;">
+           <p style="color:black;font-size:20px;text-align:center;font-weight:600;"><i class="fa fa-heartbeat" aria-hidden="true"></i> Outcome</p>
+             <hr>
+           <p style="text-align:center;color:grey;font-size:12px;">No measures provided for prediction.</p>
+       </div>
+       {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

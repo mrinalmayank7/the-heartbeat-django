@@ -1,0 +1,54 @@
+{%  extends 'MAINAPP/home.html' %}
+{% load static %}
+{% block content %}
+<div class="bground2" style="">
+<br><br><br><br><br><br><br>
+<div class="container" style="padding:0px 6% 0px 6%;">
+
+
+  <div class="row">
+    <div class="col-lg-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:30px;">
+      <div class="" style="padding:1px; background:linear-gradient(to bottom right,rgba(23, 32, 42,0.9) 10% , #000000 35%,#000000 55%, rgba(23, 32, 42,0.9) 90%);">
+        <div class=""style="background:black;padding:19px;">
+          <p class="logogradient"style="color:white;font-size:40px;margin:0px;text-align:center;font-family: 'Bodoni Moda', sans-serif;">About Us</p>
+          <p style="text-align:center;font-size:12px;color:white;margin:10px;">Who we are & why with us ?</p>
+          <p style="color:#BDC3C7;font-size:11px;text-align:center;"><label style="margin:0px;color:white;font-weight:600;font-size:12.5px">The Heartbeat</label> is the tech-for-good platform founded with a purpose to make easy, fast and accurate  healthcare diagnosis & services accessible  to all for free and save more lives. We provide clinical decision support to help specialists & doctors to make better decisions quickly with identification of health complications & risk score that are far more precise than the human brain.</p>
+          <p style="color:#BDC3C7;font-size:11px;text-align:center;">Our services are completely free with a user centred design & effortless tool usage. We provide 4 diagnostic tools along with healthcare articles for common health complications. The platform is a completely project based website / non-commercial website / non-profitable website.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6" style="margin-left:auto;margin-right:auto;display:flex;flex-wrap:wrap;margin-bottom:30px;">
+      <div class="" style="padding:1px; background:linear-gradient(to bottom left,rgba(23, 32, 42,0.9) 10% , #000000 35%,#000000 55%, rgba(23, 32, 42,0.9) 90%);">
+        <div class=""style="background:black;padding:19px;">
+          <p class="logogradient"style="color:white;font-size:40px;margin:0px;text-align:center;font-family: 'Bodoni Moda', sans-serif;">The Lead</p>
+          <p style="text-align:center;font-size:12px;color:white;margin:10px;">Meet the founder & deveoper</p>
+          <p style="color:#BDC3C7;font-size:11px;text-align:center;"><label style="margin:0px;color:white;font-weight:600;font-size:12.5px">Mrinal Mayank</label> is an eminent developer  & student of Chandigarh University, Punjab pursuing Bachelor of Engineering in Computer Science and Engineering 2019 – 2023. He had completed his AISSCE from Delhi Public School,Ranchi, Jharkhand in the Year 2019. He is experienced in Full Stack Web Development , Supervised Machine Learning , data Mining with relevant projects and research works . Holding a good command over programming languages, and working on real world problems. </p>
+          <p style="color:#BDC3C7;font-size:11px;text-align:center;">The project “The HeartBeat”  is solely developed by Mrinal  as an integral part of  his learning experience & training which is an authenticated record of his original piece of work. </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;">
+      <div class="" style="width:100%;padding:20px;">
+        <p style="color:white;font-size:40px;font-weight:600;font-family: 'Bodoni Moda', sans-serif;">You’re not alone and help is at your hand.</p>
+        <p style="font-size:13px;color:white;">Providing clinical decision support specialized with intelligent diagnostic ML tools. </p>
+        <p ><a  class="glowicon"href="{% url 'howitworks'  %}" style="border-radius:30px;font-size:15px;font-weight:700;border:0px;color:white;"> Get Started<i class="bi bi-chevron-right"></i></a></p>
+
+      </div>
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 col-12" style="margin-left:auto;margin-right:auto;">
+      <div class="" style="width:100%;background-image:url('{% static 'images/dev.jpg'%}');background-size:100%;background-repeat: no-repeat;height:100vh;width:100%;padding:30px;">
+        <br>
+        <p style="text-align:right;color:black;font-size:12.5px;font-weight:700;margin:0px;">Mrinal Mayank</p>
+        <p style="text-align:right;color:black;font-size:12px;font-weight:400;margin:0px;">Full Stack Developer</p>
+        <p style="text-align:right;color:grey;font-size:12px;font-weight:400;margin:0px;"><i>Founder. The HeartBeat</i></p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+{% endblock content %}
